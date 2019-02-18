@@ -1,0 +1,118 @@
+.pseudo-element-properties () {
+  content: "";
+  display: block;
+  position: absolute;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.horizontal-line-pixel-ratio () {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+    width: 200%;
+    transform: scale(.5) translateZ(0);
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    width: 300%;
+    transform: scale(.333) translateZ(0);
+  }
+}
+
+.vertical-line-pixel-ratio () {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+    height: 200%;
+    transform: scale(.5) translateZ(0);
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    height: 300%;
+    transform: scale(.333) translateZ(0);
+  }
+}
+
+.circle-line-pixel-ratio (@radius) {
+    @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+      height: 200%;
+      width: 200%;
+      border-radius: @radius * 2;
+      transform: scale(.5) translateZ(0);
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+      width: 300%;
+      height: 300%;
+      border-radius: @radius * 3;
+      transform: scale(.333) translateZ(0);
+    }
+  }
+
+// @border-direction: top, right, bottom, left;
+.border-direction-one-pixel (@direction, @color: #e5e5e5, @px: 1PX) {
+  position: relative;
+
+  /* top */
+  &:before when(@direction = top) {
+    .pseudo-element-properties ();
+    .horizontal-line-pixel-ratio();
+
+    border-top: @px solid @color;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transform-origin: 0 top;
+  }
+
+  /* right */
+  &:after when (@direction = right) {
+    .pseudo-element-properties ();
+    .vertical-line-pixel-ratio();
+
+    border-right: @px solid @color;
+    top: 0;
+    right: 0;
+    height: 100%;
+    transform-origin: right 0;
+  }
+
+  /* bottom */
+  &:after when (@direction = bottom) {
+    .pseudo-element-properties ();
+    .horizontal-line-pixel-ratio();
+
+    border-bottom: @px solid @color;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transform-origin: 0 bottom;
+  }
+
+  /* left */
+  &:before when(@direction = left) {
+    .pseudo-element-properties ();
+    .vertical-line-pixel-ratio();
+
+    border-left: @px solid @color;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform-origin: left 0;
+  }
+}
+
+// border-circle
+.border-circle-one-pixel (@color: #e5e5e5, @radius: 0px, @px: 1PX) {
+  position: relative;
+
+  &:before {
+    .pseudo-element-properties ();
+    .circle-line-pixel-ratio(@radius);
+
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: @px solid @color;
+    border-radius: @radius;
+  }
+}
