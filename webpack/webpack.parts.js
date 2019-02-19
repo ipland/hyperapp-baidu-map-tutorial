@@ -122,7 +122,7 @@ exports.loadImage = function ({ limit = 8 * 1024, name = utils.assetsPath('image
             ],
           },
           {
-            resourceQuery: void 0, /* file.png */
+            /* file.png file.png? file.png?whatever */
             use: [
               {
                 loader: 'url-loader',
@@ -134,19 +134,6 @@ exports.loadImage = function ({ limit = 8 * 1024, name = utils.assetsPath('image
               },
             ],
           },
-          {
-            resourceQuery: /.*/, /* file.png? */
-            use: [
-              {
-                loader: 'url-loader',
-                options: { name, limit }
-              },
-              {
-                loader: 'image-webpack-loader',
-                options: { svgo }
-              },
-            ],
-          }
         ]
       }]
     }
