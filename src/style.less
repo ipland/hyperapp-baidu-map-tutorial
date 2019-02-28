@@ -1,1 +1,242 @@
 @import '~less/common/base';
+@import "~less/variables/default.less";
+@import "~less/variables/color.less";
+@import "~less/mixins/pixel.less";
+@import "~less/font-icon/weui-icon_font.less";
+
+body {
+  font-family: @font-family;
+  background: @color-screen;
+}
+
+/* hym-from_group */
+.hym-form {
+  &_group {}
+  &_group-hd {
+    margin-top: .77em;
+    margin-bottom: .3em;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #999999;
+    font-size: 14px;
+  }
+
+  &_group-bd {
+    background-color: #FFFFFF;
+    line-height: 1.47058824;
+    font-size: 17px;
+    overflow: hidden;
+    position: relative;
+
+    .border-direction-one-pixel(top, #e5e5e5);
+    .border-direction-one-pixel(bottom, #e5e5e5);
+  }
+}
+
+/* hym-form-item */
+.hym-form {
+  &_item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+
+    &.-tap {
+      &:active {
+        background-color: @color-tap;
+      }
+    }
+
+    &:not(:first-child) {
+      .border-direction-one-pixel(top, #e5e5e5);
+
+      &:before {
+        left: 15px;
+      }
+    }
+
+    &.-warn .weui-icon-warn { /* intuitive visual difference */
+      position: relative;
+      display: inline-block;
+    }
+  }
+
+  &_item-hd {}
+
+  &_item-bd {
+    flex: 1 0 0px;
+  }
+
+  &_item-ft {
+    text-align: right;
+  }
+}
+
+/* hym-form_input */
+.hym-form  {
+  &_input {
+    width: 100%;
+    border: none;
+    outline: 0;
+    -webkit-appearance: none;
+    background-color: transparent;
+    font-size: inherit;
+    color: inherit;
+    height: 1.47058824em;
+    line-height: 1.47058824;
+  }
+}
+
+.hym-map_page {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: @color-screen;
+  z-index: 1000;
+  transition: transform 150ms ease;
+  transform: translateX(100%);
+
+  &.-visible {
+    transform: translateX(0);
+  }
+}
+
+.hym-map-suggestion {
+  width: 100%;
+  height: 100%;
+
+  &_header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 15px;
+    white-space: nowrap;
+    background: #fff;
+    box-shadow: 0 2px 3px rgba(0,0,0,.12);
+    z-index: 10;
+  }
+
+  &_address-field {
+    flex: 1;
+    padding: 10px;
+  }
+
+  &_cancel {
+    padding-left: 10px;
+    color: #999;
+  }
+
+  &_map, &_list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: @color-screen;
+  }
+
+  &_list {
+    top: 44px;
+    z-index: 10;
+
+    & .-scrollable {
+      height: 100%;
+      box-sizing: border-box;
+      margin: 10px 15px 0px;
+      background: #FFF;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch; /*iOS 5+*/
+    }
+  }
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    height: 60px;
+    padding: 0 16px;
+    overflow: hidden;
+    background: #FFF;
+    .border-direction-one-pixel (bottom, @color-tap, 1PX);
+  }
+
+  &_empty {
+    padding-top: 160px;
+
+    &-icon {
+      text-align: center;
+      padding-bottom: 16px;
+
+      & i {
+        color: #4a4c5b;
+        font-size: 64px;
+      }
+    }
+
+    &-desc {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+  }
+
+  &_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 20px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    color: #333;
+  }
+
+  &_address {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    color: #999;
+  }
+
+  &_marker {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+  }
+
+  &_prompt {
+    display: flex;
+    align-items: center;
+    width: 94%;
+    height: 44px;
+    margin: 0 auto;
+    padding: 0 14px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    box-sizing: border-box;
+  }
+
+  &_prompt-address {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    color: #999;
+  }
+
+  &_prompt-action {
+    vertical-align: middle;
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+  }
+}

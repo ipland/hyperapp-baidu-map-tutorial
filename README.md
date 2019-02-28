@@ -13,11 +13,11 @@ Prerequisites: [Node.js](https://nodejs.org/en/) (>=8.x preferred), npm version 
 npm install -unsafe-perm=true --no-optional
 
 # serve at localhost:4040
-npm run start
+BAIDU_MAP_AK=your_key npm run start
 
 # build for testing with minification
-npm run build:testing
+BAIDU_MAP_AK=your_key npm run build:testing
 
 # build for production with minification
-npm run build
+BAIDU_MAP_AK=your_key npm run build
 ```

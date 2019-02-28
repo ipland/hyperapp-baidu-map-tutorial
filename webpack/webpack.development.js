@@ -29,6 +29,7 @@ module.exports = merge([
     'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       SERVER_ENV: JSON.stringify(process.env.SERVER_ENV),
+      BAIDU_MAP_AK: JSON.stringify(process.env.BAIDU_MAP_AK),
     }
   }),
   {
