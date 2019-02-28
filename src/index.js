@@ -14,7 +14,7 @@ const state = {
   },
   searchInput: null, /* HTMLInputElement */
   searchInputVisible: false,
-  dataSource: [],
+  dataSource: [], /* Uesd to display on screen  */
   suggestionVisible: false,
 
   spot: {
@@ -23,6 +23,7 @@ const state = {
       // lng,
       // lat
     },
+    dataSource: [], /* Uesd to store data provieded by the spot  */
   }, /* location */
 
   map: null,
@@ -105,7 +106,7 @@ const actions = {
               callback ({ address, point, surroundingPois }) {
                 setState({ dataSource: surroundingPois })
                 setField({ address: address, point: point })
-                setSpot({ address: address, point: point })
+                setSpot({ address: address, point: point, dataSource: surroundingPois })
               }
             })
           }
@@ -151,7 +152,7 @@ const actions = {
             point: marker.getPosition(),
             callback ({ address, point, surroundingPois }) {
               setState({ dataSource: surroundingPois })
-              setSpot({ address: address, point: point })
+              setSpot({ address: address, point: point, dataSource: surroundingPois })
             }
           })
         }
@@ -196,12 +197,14 @@ const actions = {
   },
 
   cancelSuggestion () {
-    return function ({ suggestionVisible, searchInput, }, { setState }) {
+    return function ({ suggestionVisible, searchInput, spot }, { setState }) {
       if (suggestionVisible === false) {
         return setState({ mapVisible: false })
       }
 
-      setState({ suggestionVisible: false, })
+      // Clear HTMLInputElement value
+      searchInput.value = ''
+      setState({ dataSource: spot.dataSource, suggestionVisible: false, })
     }
   },
 
@@ -232,7 +235,7 @@ const actions = {
         // Clear HTMLInputElement value
         searchInput.value = ''
 
-        return setState({ mapVisible: true, searchInputVisible: true, suggestionVisible: false, /*dataSource: []*/ })
+        return setState({ mapVisible: true, searchInputVisible: true, suggestionVisible: false })
       }
 
       setState({ mapVisible: false, searchInputVisible: true, suggestionVisible: true })
