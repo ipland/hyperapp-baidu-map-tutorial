@@ -89,7 +89,6 @@ const actions = {
 
       map.disableScrollWheelZoom()
       map.disableDoubleClickZoom()
-      map.disableDoubleClickZoom()
       map.disableContinuousZoom()
       map.disablePinchToZoom()
       map.disableInertialDragging()
